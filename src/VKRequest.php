@@ -56,6 +56,12 @@ class VKRequest
         if(!empty($opt))
             $this -> options = http_build_query($opt);
     }
+
+    /**
+     * @param bool $to_array
+     * @param null $user_token
+     * @return bool|string
+     */
     public function vkGet ($to_array = true, $user_token = null)
     {
         $t = ($user_token)?:$this -> token;
@@ -84,6 +90,13 @@ class VKRequest
         }
     }
 
+    /**
+     * @param $count
+     * @param float $pause
+     * @param bool $to_array
+     * @param null $user_token
+     * @return array|mixed
+     */
     public function vkManyGet($count, $pause = 1.5, $to_array = true, $user_token = null){
         $all_answers = $all_errors = array();
         $one_answer = null;
@@ -131,6 +144,5 @@ $request_test = new VKRequest(
     '62331ec8745ced335f1d3c2a410f6a8975f8ee393cc3a0b923505fdfaa4bfe5446cf61713c491ea19c5f4',
     'wall.get'
 );
-echo 'SUKAFFFF!';
 $request_test -> setOptions(['count' => 5,]);
 $request_test->vkPrint($request_test -> vkManyGet(3));
