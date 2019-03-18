@@ -2,7 +2,6 @@
 namespace VKRequestClass;
 
 require_once 'VKRequest.php';
-
 define('USER_TOKEN', 'vk_token_string');
 
 $request_test = new VKRequest(
