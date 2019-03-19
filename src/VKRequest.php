@@ -15,6 +15,7 @@ class VKRequest
             $srt_log = $log;
 
         self::$logs[] = '* ' . date('d.m.Y H:i:s') . ' | method: ' . $this -> vk_method .' --> ' . $srt_log;
+        $this -> saveLogs();
     }
 
     private function saveLogs ()
@@ -45,10 +46,6 @@ class VKRequest
         $this -> lang = $lang;
     }
 
-    public function __destruct()
-    {
-        $this -> saveLogs();
-    }
 
     public function setOptions ($opt = array()){
         if(!empty($opt))
@@ -57,7 +54,7 @@ class VKRequest
 
     /**
      * @param bool $to_array
-     * @param null $user_token
+     * @param null|string $user_token
      * @return bool|string
      */
     public function vkGet ($to_array = true, $user_token = null)
@@ -89,10 +86,10 @@ class VKRequest
     }
 
     /**
-     * @param $count
+     * @param int $count
      * @param float $pause
      * @param bool $to_array
-     * @param null $user_token
+     * @param null|string $user_token
      * @return array|mixed
      */
     public function vkManyGet($count, $pause = 1.5, $to_array = true, $user_token = null){
